@@ -1,0 +1,28 @@
+#MainContent.Shifted {transform: translate(var(--sidebar-width));}
+#MainContent {
+    /*margin shorthand: top horizontal bottom*/
+    margin: var(--nav-height) 0vw 0;
+    transition: transform 0.2s ease, margin-right 0.2s ease;
+}
+
+#MainContent h1, #MainContent h2{
+    padding:10px;
+    text-align: center;
+}
+
+#MainContent h1 {
+    font-weight: 500;
+}
+
+#blanket {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+    z-index: 100;
+    overflow: hidden;
+    position:fixed;
+}

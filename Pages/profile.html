@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/MainStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/NavBar.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/SideMenu.css">
+    <link rel="stylesheet" type="text/css" href="../css/MainContent.css">
+    <link rel="stylesheet" type="text/css" href="../css/Search.css">
+    <link rel="stylesheet" type="text/css" href="../css/Login.css">
+    <link rel="stylesheet" type="text/css" href="../css/dropDown.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <script src="../js/SideBar.js" defer></script>
+    <script src="../js/Login.js" defer></script>
+    <script src="../js/dropDown.js" defer></script>
+    <title>Home</title>
+</head>
+<body>
+    <!--- NavBar --->
+    <div id="NavBar">
+        <div id="SideButton"><img src="../images/icons/menu_black.png" alt=""/></div>
+        <div id="logo"><a href="#">HORIZON</a></div>
+    </div>
+
+    <!--- SideMenu --->
+    <div id="SideMenu">
+        <ul>
+            <li class="dropDown"><a href="../index.html">Home</a></li>
+            <!-- check if person logged in and if he is output profile in the side nav -->
+            <li class="dropDown"><a href="./profile.html">Profile</a></li>
+            <li class="dropDown"><a href="">About Us</a></li>
+            <li class="dropDown"><a href="./universities.html">Universities</a></li>
+        </ul>
+    </div>
+
+    <!--- Main Content --->
+    <div id="MainContent">
+
+        <div id="profileContainer">
+            
+            <form action="fileupload.php" method="post">
+            <h1>Profile Page</h1>
+
+            <div id="profileItems">
+                <div class="profileItem">
+                    <label for="nameInput"> Name:</label> 
+                    <input type="text" id="nameInput" name=""> 
+                </div>
+
+                <div class="profileItem">
+                    <label for="emailInput"> Email:</label> 
+                    <input type="text" id="emailInput" name="">
+                </div>
+
+                <div class="profileItem">
+                    <label for="addressInput"> Address:</label> 
+                    <input type="text" id="addressInput" name=""> 
+                </div>
+
+                <div class="profileItem">
+                    <label for="docs">Upload your transcripts here!</label>
+                    <input type="file" name="docs" id="docs" multiple=""/> 
+                </div>
+            </div>
+
+
+            <div>
+                <button>Save Changes</button>
+            </div>
+        </div>
+    </div>
+</body>

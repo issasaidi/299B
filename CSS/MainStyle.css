@@ -1,0 +1,22 @@
+:root {
+    --color-A:#EFEFEF; /* Body background color */
+    --color-B:#4A403A; /* Navbar background color*/
+    --main-accent: #A45D5D;
+
+    --nav-height: 10vh;
+    --sidebar-width: 15vw;
+}	
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: titillium;
+}
+@font-face {
+    font-family: titillium;
+    src: url("../Fonts/TitilliumWeb-Regular.ttf");
+}
+body {
+    background-color: var(--color-A, white);
+    overflow-x: hidden;
+}

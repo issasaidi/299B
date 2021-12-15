@@ -1,0 +1,39 @@
+#SideMenu.Shifted {transform: translate(var(--sidebar-width));}
+#SideMenu{
+    position: fixed;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+    left: calc(-1 *var(--sidebar-width));
+    transition: transform 0.2s ease;
+}
+
+#SideMenu ul {
+    list-style:none;
+    background-color: var(--color-B);
+    height: 100%;
+}
+
+#SideMenu ul li.dropDown{
+    display: block;
+    padding: 16px;
+    color: var(--color-A);
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+#SideMenu ul li.dropDown:hover {background-color: var(--main-accent);}
+#SideMenu ul li.dropDown.active:hover {background-color: var(--main-accent);}
+#SideMenu ul li a {
+    display: block;
+    font-weight: bold;
+    /* padding: 16px; */
+    /* background-color: var(--color-B); */
+    /* color: var(--color-A); */
+    text-align: center;
+    color: var(--color-A);
+    text-decoration:none;
+    /* transition: background-color 0.1s ease-in-out; */
+}
+/* #SideMenu li a:hover {background-color: var(--color-B-Darker);} */
