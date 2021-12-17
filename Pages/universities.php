@@ -20,7 +20,7 @@
     <div id="NavBar">
         <div id="SideButton"><img src="../images/icons/menu_black.png" alt=""/></div>
         <div id="logo"><a href="home.html">Home</a></div>
-        <button>Register</button>
+        <button onclick="Register()">Register</button>
         <button onclick="ShowLogin()">Login</button>
     </div>
 
@@ -281,54 +281,10 @@
                     );
 
                 }
-                // echo $db;
-
-                // try {
-                //     $m = new MongoDB\Driver\Manager('mongodb+srv://horizon299fyp:IbNkuf0gnBDXYdPi@cluster0.82fqu.mongodb.net/horizon?retryWrites=true&w=majority');
-                //     echo "Connection to database successfully";
-                // }
                 
-                // catch (Throwable $e) {
-                //     echo "Captured Throwable for connection : " . $e->getMessage() . PHP_EOL;
-                // }
-                
-                // echo createUni(
-                //     "Bonjour", 
-                //     "Bliss-2.jpg", 
-                //     "some description", 
-                //     ["Lebanon", "has phD program", "Undergraduates"],
-                //     "Computer Science",
-                //     "Lebanon",
-                //     "Arts and Sciences" 
-                // );
             ?>
 
-            <!-- <div class="uni">
-                <div class="uniImageContainer">
-                    <img src="../images/Bliss-2.jpg" alt="university Image">
-                </div>
-                <div class="uniDetails">
-                    
-                    <h3 class="uniName">AUB</h3>
-                    <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, accusamus quod reiciendis quaerat iste atque laudantium quo molestias asperiores obcaecati! Doloremque aspernatur quos quod dolores tempora reiciendis non exercitationem maxime.</p>
-                    <div class="queries">
-                        <span class="uniProg">Bachelor's</span>
-                        <span class="uniCountry">Lebanon</span>
-                        <span class="uniFaculty">Arts and Sciences</span>
-                    </div>
-                    <div class="uniBottomPanel">
-                        <div class="uniTags">
-                            <span>Lebanon</span>
-                            <span>Has phD program</span>
-                            <span>Undergraduates</span>
-                            <span>LOREM IPSUM</span>
-                        </div>
-                        <div class="applyButtonContainer">
-                            <button>Apply now</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+            
 
             
         </div>
