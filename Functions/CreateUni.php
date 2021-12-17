@@ -1,5 +1,5 @@
 <?php
-function createUni($name, $src, $desc, $attributes, $prog, $country, $faculty) {
+function createUni($name, $src, $desc, $attributes, $prog) {
 
     $src = '../images/'.$src;
 
@@ -18,9 +18,8 @@ function createUni($name, $src, $desc, $attributes, $prog, $country, $faculty) {
                     <h3 class='uniName'>$name</h3>
                     <p class='desc'>$desc</p>
                     <div class='queries'>
-                        <span class='uniProg'>$prog</span>
-                        <span class='uniCountry'>$country</span>
-                        <span class='uniFaculty'>$faculty</span>
+                        <h3 style='font-style: italic;'>$prog</h3>
+                        
                     </div>
                     <div class='uniBottomPanel'>
                         <div class='uniTags'>".$spans."</div>
@@ -32,5 +31,6 @@ function createUni($name, $src, $desc, $attributes, $prog, $country, $faculty) {
             </div>"
     );
 }
+
 
 
