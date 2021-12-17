@@ -13,13 +13,7 @@ window.onload=function(){
   }
   
   // Check if form element exist on page
-  if(form !== null) {
-    // When form is submitted console log the value of the select field
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      console.log('Selected country:', form.querySelector('[name="country"]').value);
-    });
-  }
+  
   
   // Create custom dropdown
   function createCustomDropdown(dropdown) {
