@@ -104,20 +104,43 @@
         </div>
     </div>
 
+    <?php 
+    require_once("config.php");
+    require_once("FormSanitizer.php"); 
+    require_once("Constants.php"); 
+    require_once("Account.php"); 
+    $account = new Account($con);
+    if(isset($_POST["submitButton"])) {
+        $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
+        $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+        $success = $account->login($username,$password);
+        if($success) {
+            $_SESSION["loggedIn"] = $username;
+        }
+    }
+    
+    function getInputValue($name) {
+        if(isset($_POST[$name])) {
+            echo $_POST[$name];
+        }
+    }
+    
+     ?>
     <!--- Login --->
     <div id="loginBox">
         <h1>Login</h1>
-        <Form method ="POST" action = "#" autocomplete="on">
+        <Form method ="POST" action = "index.php" autocomplete="on">
+        <?php echo $account->getError(Constants::$loginFailed); ?>
             <div class="formElement">
                 <span>Username</span>
-                <input type="text" name = "username" id = "UsernameInput" placeholder= "Username" required>
+                <input type="text" name = "username" id = "UsernameInput" placeholder= "Username" value="<?php getInputValue('username'); ?>" required>
             </div>
             <div class="formElement" >
                 <span>Password:</span>
-                <input type="password" name ="Password" placeholder = "Password" required>
+                <input type="password" name ="password" placeholder = "Password" required>
             </div>
-            <input type="submit" value="Login">
-            <input type="button" value="No account? Register here" >
+            <input type="submit" name="submitButton" value="Login">
+            <input type="button" value="No account? Register here" onclick = "Register()">
         </Form>
     </div>
     

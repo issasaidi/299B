@@ -60,18 +60,7 @@
                       <option value="Australia">Australia</option>
                   </select>
                 </div>
-                <div>
-                    <label for="faculty">Faculties</label>
-                    <select name="faculty" id="faculty" data-dropdown>
-                        <option value="">Please select your field of study</option>
-                        <option value="Arts and Sciences">Arts and Sciences</option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="Architecture">Architecture</option>
-                        <option value="Nursing">Nursing</option>
-                        <option value="Health Science">Health Science</option>
-                        <option value="Medicine">Medicine</option>
-                    </select>
-                    </div>
+                
                     <div>
                         <label for="major">Majors</label>
                         <select name="major" id="major" data-dropdown>
@@ -205,7 +194,7 @@
                         <span class="checkmark"></span>
                     </label>
                     <label class="contr">PhD Program
-                        <input type="radio" name="Education_Level" value="Phd">
+                        <input type="radio" name="Education_Level" value="PhD">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -237,30 +226,58 @@
                 foreach($docs as $doc) {
 
                     $uni_name = $doc->name;
-
                     $uni_img = $doc->image;
                     $desc = $doc->desc;
-                    
                     $country = $doc->country;
-                    if (isset($_GET["country"])) {
+                    $majors=$doc->majors;
+                    $actualMajor = "";
+                    $actualMajorDegrees = [];
+                    $majorExists=false;
+                    if (isset($_GET["major"]) && $_GET["major"] != '') {
+                        foreach($majors as $major){
+                            if ($_GET["major"] == $major->{'name'}) {
+                                $actualMajor = $major->{'name'};
+                                $actualMajorDegrees = (array) $major->{'degrees'};
+                                $majorExists=true;
+                                break;
+                            }
+                        }
+                        if ($majorExists==false){
+                            continue;
+                        }
+                    }
+                    if (isset($_GET["country"]) && $_GET["country"] != '') {
                         if ($_GET["country"] != $country) {
                             continue;
                         }
                     }
-
-                    // Change later
-                    $attr = ["Lebanon", "has phD program", "Undergraduates"];
+                    $educationalLevelExists = false;
+                    if (isset($_GET["Education_Level"])) {
+                        foreach($doc->degrees as $degree){
+                            if($_GET["Education_Level"] == $degree) {
+                                $educationalLevelExists=true;
+                                break;
+                            }
+                        }
+                        if ($educationalLevelExists==false){
+                            continue;
+                        }
+                    }
+                    $programs = "";
+                    if($majorExists){
+                        $programs = implode(", ", $actualMajorDegrees);
+                    } else {
+                        $programs = implode(", ", (array) $doc->degrees);
+                    }
+                    $attr = [$country, $programs];
                     $major = "Computer Science";
-                    $faculty = "Arts and Sciences";
 
                     echo createUni(
                         $uni_name, 
                         $uni_img, 
                         $desc, 
                         $attr,
-                        $major,
-                        $country,
-                        $faculty 
+                        $actualMajor
                     );
 
                 }
@@ -317,10 +334,33 @@
         </div>
     </div>
 
+    <?php 
+    require_once("../config.php");
+    require_once("../FormSanitizer.php"); 
+    require_once("../Constants.php"); 
+    require_once("../Account.php"); 
+    $account = new Account($con);
+    if(isset($_POST["Submit"])) {
+        $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
+        $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+        $success = $account->login($username,$password);
+        if($success) {
+            $_SESSION["loggedIn"] = $username;
+        }
+    }
+    
+    function getInputValue($name) {
+        if(isset($_POST[$name])) {
+            echo $_POST[$name];
+        }
+    }
+    
+     ?>
+
     <!--- Login --->
     <div id="loginBox">
         <h1>Login</h1>
-        <Form method ="POST" action = "#" autocomplete="on">
+        <Form method ="POST" action = "universities.php" autocomplete="on">
             <div class="formElement">
                 <span>Username</span>
                 <input type="text" name = "username" id = "UsernameInput" placeholder= "Username" required>
@@ -329,8 +369,8 @@
                 <span>Password:</span>
                 <input type="password" name ="Password" placeholder = "Password" required>
             </div>
-            <input type="submit" value="Login">
-            <input type="button" value="No account? Register here" >
+            <input type="submit" name = "Submit" value="Login">
+            <input type="button" value="No account? Register here" onclick = "Register()">
         </Form>
     </div>
     

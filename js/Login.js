@@ -14,3 +14,7 @@ function HideLogin() {
     setTimeout(function(){document.getElementById("loginBox").style.zIndex = "-200";},250);
     document.body.removeChild(blanket);
 }
+
+function Register(){
+    window.location = "http://localhost:8888/299B/Pages/RegisterAsStudent.php";
+}
