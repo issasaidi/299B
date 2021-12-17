@@ -1,8 +1,9 @@
 window.onload=function(){
 
   const dropdowns = document.querySelectorAll('[data-dropdown]');
-  const form = document.querySelector('form');
-  
+  // const form = document.querySelector('form');
+  const form = document.getElementById("select-form");
+
   // Check if dropdowns exist on page
   if(dropdowns.length > 0) {
     // Loop through dropdowns and create custom dropdown for each select element
