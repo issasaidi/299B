@@ -1,4 +1,5 @@
 <?php 
+require 'vendor/autoload.php';
 require_once("config.php");
 require_once("FormSanitizer.php"); 
 require_once("Constants.php"); 

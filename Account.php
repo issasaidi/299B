@@ -9,14 +9,14 @@ class Account {
     public function __construct($con) {
         $this->con = $con;
     }
-    public function register($fn, $ln, $un, $em, $emc, $pw, $pwc, $tp) {
+    public function registerStudent($fn, $ln, $un, $em, $emc, $pw, $pwc, $tp) {
         $this->validateFirstName($fn);
         $this->validateLastName($ln);
         $this->validateUsername($un);
         $this->validateEmailR($em, $emc);
         $this->validatePasswords($pw, $pwc);
         if(empty($this->errors)) {
-            $result = $this->insertUserDetails($fn, $ln, $un, $em, $pw, $tp);
+            $result = $this->insertUserDetailsStudent($fn, $ln, $un, $em, $pw, $tp);
             if($result != null){
                 $mailer = new Mailer($this->con);
                 $verK = new MongoDB\Bson\ObjectID();
@@ -31,9 +31,28 @@ class Account {
             return false;
         }
     }
-    public function login($un, $pw) {
+    public function registerUni($fn, $em, $emc, $pw, $pwc, $tp, $phone, $country, $city, $address, $postalCode) {
+        $this->validateEmailR($em, $emc);
+        $this->validatePasswords($pw, $pwc);
+        if(empty($this->errors)) {
+            $result = $this->insertUserDetailsUni($fn, $em, $emc, $pw, $pwc, $tp, $phone, $country, $city, $address, $postalCode);
+            if($result != null){
+                $mailer = new Mailer($this->con);
+                $verK = new MongoDB\Bson\ObjectID();
+                $mailer->sendVerMail($em, $verK);
+                $q = $this->con->users->updateOne(['email'=>$em],['$set'=>['verificationID'=>$verK]]);
+                return $result;
+            } else {
+                return $result;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    public function login($em, $pw) {
         $pw = hash("sha512", $pw);
-        $q = $this->con->users->findOne(["username" => (string) $un, "password" => (string) $pw]);
+        $q = $this->con->users->findOne(["email" => (string) $em, "password" => (string) $pw]);
         if($q != null) {
             return true;
         }
@@ -46,7 +65,7 @@ class Account {
         $q = $this->con->files->findOne(['username' => 'default', 'usage' => 'profilePic'], ['$projection' =>['_id' => 1, 'content' => 0]]);
         return $q['_id'];
     }
-    public function insertUserDetails($fn, $ln, $un, $em, $pw, $tp) {
+    public function insertUserDetailsStudent($fn, $ln, $un, $em, $pw, $tp) {
         $pw = hash("sha512", $pw);
         $profilePic = $this->getDefaultPic();
 
@@ -59,6 +78,26 @@ class Account {
             "profilePic" => $profilePic,
             "signUpDate" => date("Y/m/d"),
             "type" => $tp
+        ]);
+
+        return $q;
+    }
+    public function insertUserDetailsUni($fn, $em, $emc, $pw, $pwc, $tp, $phone, $country, $city, $address, $postalCode) {
+        $pw = hash("sha512", $pw);
+        $profilePic = $this->getDefaultPic();
+
+        $q = $this->con->users->insertOne([
+            "name" => $fn,
+            "email" => $em,
+            "password" => $pw,
+            "profilePic" => $profilePic,
+            "signUpDate" => date("Y/m/d"),
+            "type" => $tp,
+            "phone" => $phone,
+            "country" => $country,
+            "city" => $city,
+            "address" => $address,
+            "postalCode" => $postalCode
         ]);
 
         return $q;
