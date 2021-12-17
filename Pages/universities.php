@@ -231,11 +231,13 @@
                     $country = $doc->country;
                     $majors=$doc->majors;
                     $actualMajor = "";
+                    $actualMajorDegrees = [];
                     $majorExists=false;
                     if (isset($_GET["major"]) && $_GET["major"] != '') {
                         foreach($majors as $major){
                             if ($_GET["major"] == $major->{'name'}) {
                                 $actualMajor = $major->{'name'};
+                                $actualMajorDegrees = (array) $major->{'degrees'};
                                 $majorExists=true;
                                 break;
                             }
@@ -261,11 +263,14 @@
                             continue;
                         }
                     }
-                    // Change later
-                    $programs = implode(" ", (array) $doc->degrees);
+                    $programs = "";
+                    if($majorExists){
+                        $programs = implode(", ", $actualMajorDegrees);
+                    } else {
+                        $programs = implode(", ", (array) $doc->degrees);
+                    }
                     $attr = [$country, $programs];
                     $major = "Computer Science";
-                    
 
                     echo createUni(
                         $uni_name, 
