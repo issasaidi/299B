@@ -15,6 +15,12 @@ function HideLogin() {
     document.body.removeChild(blanket);
 }
 
+function RegisterStudent(){
+    window.location = "http://localhost:8888/299B/Pages/RegisterAsStudent.php";
+}
+function RegisterUni(){
+    window.location = "http://localhost:8888/299B/Pages/RegisterAsUni.php";
+}
 function Register(){
     window.location = "http://localhost:8888/299B/Pages/RegisterAsStudent.php";
 }

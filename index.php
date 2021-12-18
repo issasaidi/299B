@@ -19,7 +19,7 @@
     <div id="NavBar">
         <div id="SideButton"><img src="./images/icons/menu_black.png" alt=""/></div>
         <div id="logo"><a href="#">Home</a></div>
-        <button>Register</button>
+        <button onclick="Register()">Register</button>
         <button onclick="ShowLogin()">Login</button>
     </div>
 

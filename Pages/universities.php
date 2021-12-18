@@ -20,7 +20,7 @@
     <div id="NavBar">
         <div id="SideButton"><img src="../images/icons/menu_black.png" alt=""/></div>
         <div id="logo"><a href="home.html">Home</a></div>
-        <button>Register</button>
+        <button onclick="Register()">Register</button>
         <button onclick="ShowLogin()">Login</button>
     </div>
 
@@ -281,28 +281,10 @@
                     );
 
                 }
-                // echo $db;
-
-                // try {
-                //     $m = new MongoDB\Driver\Manager('mongodb+srv://horizon299fyp:IbNkuf0gnBDXYdPi@cluster0.82fqu.mongodb.net/horizon?retryWrites=true&w=majority');
-                //     echo "Connection to database successfully";
-                // }
                 
-                // catch (Throwable $e) {
-                //     echo "Captured Throwable for connection : " . $e->getMessage() . PHP_EOL;
-                // }
-                
-                // echo createUni(
-                //     "Bonjour", 
-                //     "Bliss-2.jpg", 
-                //     "some description", 
-                //     ["Lebanon", "has phD program", "Undergraduates"],
-                //     "Computer Science",
-                //     "Lebanon",
-                //     "Arts and Sciences" 
-                // );
             ?>
 
+<<<<<<< HEAD
             <div class="uni">
                 <div class="uniImageContainer">
                     <img src="../images/Bliss-2.jpg" alt="university Image">
@@ -331,6 +313,9 @@
                     </div>
                 </div>
             </div>
+=======
+            
+>>>>>>> 9355544bfb9c04f918f1a604c70a16666cc43fd2
 
             
         </div>
