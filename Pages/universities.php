@@ -303,7 +303,7 @@
                 // );
             ?>
 
-            <!-- <div class="uni">
+            <div class="uni">
                 <div class="uniImageContainer">
                     <img src="../images/Bliss-2.jpg" alt="university Image">
                 </div>
@@ -324,11 +324,13 @@
                             <span>LOREM IPSUM</span>
                         </div>
                         <div class="applyButtonContainer">
-                            <button>Apply now</button>
+                                <a href= "Applicationform.html">
+                                    <button>Apply now</button>
+                </a>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
             
         </div>
