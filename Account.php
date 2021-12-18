@@ -3,11 +3,14 @@ include_once("User.php");
 include_once("Mailer.php");
 
 class Account {
-    // used to validate and insert an Account's data
     private $con;
     private $errors = array();
     public function __construct($con) {
         $this->con = $con;
+    }
+    public function apply($fn, $ln, $em, $ph, $ge, $dob, $ad, $ct, $pc, $st, $pv, $cn, $hb, $im) {
+        $result = $this->insertAppForm($fn, $ln, $em, $ph, $ge, $dob, $ad, $ct, $pc, $st, $pv, $cn, $hb, $im);
+            return $result;
     }
     public function registerStudent($fn, $ln, $un, $em, $emc, $pw, $pwc, $tp) {
         $this->validateFirstName($fn);
@@ -64,6 +67,26 @@ class Account {
     public function getDefaultPic() {
         $q = $this->con->files->findOne(['username' => 'default', 'usage' => 'profilePic'], ['$projection' =>['_id' => 1, 'content' => 0]]);
         return $q['_id'];
+    }
+    public function insertAppForm($fn, $ln, $em, $ph, $ge, $dob, $ad, $ct, $pc, $st, $pv, $cn, $hb, $im) {
+        $q = $this->con->active->insertOne([
+            "firstName" => $fn,
+            "lastName" => $ln,
+            "email" => $em,
+            "phone" => $ph,
+            "gender" => $ge,
+            "birth" => $dob,
+            "address" => $ad,
+            "city" => $ct,
+            "postalCode" => $pc,
+            "state" => $st,
+            "province" => $pv,
+            "country" => $cn,
+            "hobbies" => $hb,
+            "inMajor" => $im
+        ]);
+
+        return $q;
     }
     public function insertUserDetailsStudent($fn, $ln, $un, $em, $pw, $tp) {
         $pw = hash("sha512", $pw);
