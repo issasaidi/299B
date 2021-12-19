@@ -26,10 +26,10 @@
     <!--- SideMenu --->
     <div id="SideMenu">
         <ul>
-            <li class="dropDown">Profile</li>
-            <li class="dropDown">Settings</li>
-            <li class="dropDown">List Item 3</li>
-            <li class="dropDown">List Item 4</li>
+            <li class="dropDown"><a href="../index.html">Home</a></li>
+            <li class="dropDown"><a href="./profile.html">Profile</a></li>
+            
+            <li class="dropDown"><a href="./universities.php">Universities</a></li>
         </ul>
     </div>
 
