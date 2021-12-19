@@ -24,7 +24,9 @@ function createUni($name, $src, $desc, $attributes, $prog) {
                     <div class='uniBottomPanel'>
                         <div class='uniTags'>".$spans."</div>
                         <div class='applyButtonContainer'> 
-                            <button>Apply now</button>
+                            <a href= 'Applicationform.php'>
+                                <button>Apply now</button>
+                            </a>
                         </div>
                     </div>
                 </div>

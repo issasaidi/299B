@@ -284,8 +284,7 @@
                 
             ?>
 
-<<<<<<< HEAD
-            <div class="uni">
+            <!-- <div class="uni">
                 <div class="uniImageContainer">
                     <img src="../images/Bliss-2.jpg" alt="university Image">
                 </div>
@@ -312,10 +311,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-=======
-            
->>>>>>> 9355544bfb9c04f918f1a604c70a16666cc43fd2
+            </div> -->
 
             
         </div>
